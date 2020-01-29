@@ -88,7 +88,8 @@ $ban=true;
   
     public function nuevoAction()
     {
-        return $this->render('ProduccionBundle:Tarea:nuevo.html.twig', array(
+      //  return $this->render('ProduccionBundle:Tarea:nuevo.html.twig', array(
+		 return $this->render('ProduccionBundle:Tarea:nuevo.html.twig', array(
              'idTarea'   => null
         ));
     }
