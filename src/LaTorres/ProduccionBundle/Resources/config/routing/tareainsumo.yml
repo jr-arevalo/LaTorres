@@ -1,0 +1,26 @@
+tarea:
+    pattern:  /
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:index" }
+
+tarea_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:show" }
+
+tarea_create:
+    pattern:  /create
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:create" }
+    requirements: { _method: post }
+
+tarea_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:edit" }
+
+tarea_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:update" }
+    requirements: { _method: post }
+
+tarea_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ProduccionBundle:TareaInsumo:delete" }
+    requirements: { _method: post }

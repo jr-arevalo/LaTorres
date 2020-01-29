@@ -1,0 +1,15 @@
+produccion:
+    pattern:  /produccion
+    defaults: { _controller: ProduccionBundle:Default:produccion }
+produccion_tarea:
+    pattern:  /produccion/{tipoTarea}
+    defaults: { _controller: ProduccionBundle:Default:produccionTarea }
+enfunde:
+    pattern:  /enfunde
+    defaults: { _controller: ProduccionBundle:Default:lotes }
+buscar_lote:
+    pattern:  /buscar-lote
+    defaults: { _controller: ProduccionBundle:Default:buscarLote }
+cambiar_tarea:
+    pattern:  /cambiar-tarea
+    defaults: { _controller: ProduccionBundle:Default:cambiarTarea }

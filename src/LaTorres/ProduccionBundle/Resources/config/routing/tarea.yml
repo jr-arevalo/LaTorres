@@ -1,0 +1,42 @@
+tarea:
+    pattern:  /
+    defaults: { _controller: "ProduccionBundle:Tarea:index" }
+
+tarea_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ProduccionBundle:Tarea:show" }
+
+tarea_new:
+    pattern:  /new
+    defaults: { _controller: "ProduccionBundle:Tarea:new" }
+tarea_finalizar:
+    pattern:  /{id}/finalizar
+    defaults: { _controller: "ProduccionBundle:Tarea:finalizar",id:0}
+
+tarea_create:
+    pattern:  /create
+    defaults: { _controller: "ProduccionBundle:Tarea:create" }
+    requirements: { _method: post }
+corte_create:
+    pattern:  /corte/create
+    defaults: { _controller: "ProduccionBundle:Corte:create" }
+    requirements: { _method: post }
+tarea_editar:
+    pattern:  /{id}/editar
+    defaults: { _controller: "ProduccionBundle:Tarea:editar" }
+
+tarea_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ProduccionBundle:Tarea:update" }
+    requirements: { _method: post }
+
+tarea_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ProduccionBundle:Tarea:delete" }
+    requirements: { _method: post }
+tarea_nuevo:
+    pattern:  /nuevo
+    defaults: { _controller: "ProduccionBundle:Tarea:nuevo" }
+tarea_tipo:
+    pattern:  /tipo
+    defaults: { _controller: "ProduccionBundle:Tarea:tipoTarea" }

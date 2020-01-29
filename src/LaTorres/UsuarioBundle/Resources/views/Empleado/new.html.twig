@@ -1,0 +1,42 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Tareas{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript"> 
+$(document).ready(function(){
+	elemento=$('#sub_emp')
+	elemento.addClass('active');
+	elemento.parent().addClass('open');
+	elemento.parent().parent().addClass('active');
+  
+});
+</script>
+{% endblock %}
+{% block main_header %}
+<h2>Tareas</h2>
+<em>Tareas en Ejecucion y Tareas Terminadas</em>
+{% endblock %}
+
+{% block main_content %}
+<h1>Empleado</h1>
+
+<form action="{{ path('empleado_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('empleado') }}">
+            Volver a la Lista
+        </a>
+    </li>
+</ul>
+{% endblock %}

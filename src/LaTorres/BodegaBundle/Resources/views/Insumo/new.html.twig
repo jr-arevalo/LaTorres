@@ -1,0 +1,52 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Tareas{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{asset('js/select2.min.js')}}"></script>
+<script>
+    $(function(){
+    //$('#form_insumo_etiquetas').select2({formatNoMatches:'No se ha encontrado la Tarea'});	
+});
+</script>
+{% endblock %}
+
+{% block main_header %}
+<h2>Nueva Tarea</h2>
+<em>Añada una tarea a la lista de Tareas Diarias</em>
+{% endblock %}
+
+{% block main_content %}
+<h1>Nuevo Insumo</h1>
+
+<form action="{{ path('bodega_insumo_create') }}" method="post" {{ form_enctype(formulario) }}>
+  <br>
+    
+    {{ form_label(formulario.detalle )}} 
+    {{ form_widget(formulario.detalle , { 'attr': {"list":"listadet"}}) }}   <br>
+    <datalist id="listadet">
+    <option label="" value="Rojo">
+    <option label="" value="Amarillo">
+    <option label="" value="Verde">    
+        <option label="" value="Azul"> 
+            <option label="" value="Cafe">
+                <option label="" value="Rimulax"> 
+</datalist>
+        
+   {{ form_rest(formulario) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('bodega_insumo') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

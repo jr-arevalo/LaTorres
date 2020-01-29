@@ -1,0 +1,77 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Insumos{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script src="{{asset('js/bootstrap-editable.min.js')}}"></script>
+<script src="{{asset('js/king-elements.min.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/king-table.min.js')}}"></script>
+<script src="{{asset('js/comun.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.bootstrap.js')}}"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	elemento=$('#sub_ins')
+	elemento.addClass('active');
+	elemento.parent().addClass('open');
+	elemento.parent().parent().addClass('active');
+  
+});
+</script>
+{% endblock %}
+{% block main_header %}
+<h2>INSUMOS</h2>
+<em>Gestiona facilmente Insumos</em>
+{% endblock %}
+
+{% block main_content %}
+<div class="row ">
+	<div class="col-md-12">
+		 <a href="{{ path('bodega_insumo_new') }}"> Nuevo + </a>
+	</div>
+
+
+
+	<div class="col-md-12 ">
+           <div class="widget">
+		<div class="widget-header">
+			<h3><i class="fa fa-bars"></i>Lista de Insumos</h3>
+		</div>
+		<div class="widget-content ">
+		<table class="table table-sorting datatable table-bordered  ">
+			<thead>
+				<tr>
+					<th>Detalle</th>
+					<th>Cantidad Existente</th>
+                                                                                                                                       <th>Usado en</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for entity in entities %}
+				<tr >
+                                                                                                                                     <td><a href="{{ path('bodega_insumo_show', { 'id': entity.id }) }}">{{entity.tipoInsumo ~" "~ entity.detalle}}</a></td>
+					<td>{{ entity.cantStock }}</td>
+					<td>
+{%set etiqs=""%}
+					{% for etiq in entity.tipoInsumo.etiquetas%}<span class='label label-medium label-sm'>{{etiq}} </span>&nbsp;{% endfor %}
+</td>                                                                                                                            
+                                                                                                                                      <td>
+                                                                                                                                                <div class="btn-group widget-header-toolbar">
+						<a href="{{ path('bodega_insumo_show', { 'id': entity.id }) }}" class="btn btn-link" title="Detalle Tarea"><i class="fa fa-search-plus"></i></a>
+						<a href="{{ path('bodega_insumo_edit', { 'id': entity.id }) }}" class="btn btn-link" title="Aumentar Existencias"><i class="fa fa-shopping-cart"></i></a>
+                                                                                                                                                </div>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+           </div>  </div>
+</div>
+     
+{% endblock %}

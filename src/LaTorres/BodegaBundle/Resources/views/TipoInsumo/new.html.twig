@@ -1,0 +1,26 @@
+<h1>TipoInsumo creation</h1>
+
+<form action="{{ path('tipoinsumo_create') }}" method="post" {{ form_enctype(form) }}>
+         {{ form_label(form.nombre )}} 
+    {{ form_widget(form.nombre , { 'attr': {"list":"tipos"}} ) }}  
+    <datalist id="tipos">
+    <option label="" value="Funda">
+    <option label="" value="Protector">
+    <option label="" value="Cinta">    
+        <option label="" value="Herbicida"> 
+            <option label="" value="Suncho">
+                <option label="" value="Fertilizante"> 
+</datalist>
+    {{ form_rest(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('tipoinsumo') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

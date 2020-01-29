@@ -1,0 +1,116 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+
+  add('#add','#form_tarea_registroBodega',0);
+  var listaTipoTarea=document.getElementById('form_tarea_tipoTarea');
+  listaTipoTarea.selectedIndex={{idTipoTarea-1}};
+  listaTipoTarea.focus();
+  
+  
+  var lista = document.getElementById('form_tarea_tipoTarea');
+	lista.onchange = function() {
+	var id = lista.options[lista.selectedIndex].value;
+	funcRespuesta=function(respuesta) {
+			$('#tarea').html(respuesta);
+			
+			}
+	Ajax("{{path ('tarea_tipo')}}",{ tipoTarea: id },funcRespuesta);
+	$('#widget-tarea').html('<div align="center"><i class="fa  fa--rotate-right fa-spin fa-3x"></i></div>');
+	}
+	
+  $('#form_tarea_empleado').select2({formatNoMatches:'No se ha encontrado al Empleado'});	
+      $('#world-map').vectorMap({
+		map: 'latorres',
+		regionsSelectable:true,
+		regionsSelectableOne:true,
+		backgroundColor: 'transparent',
+	   regionStyle:{
+		  initial:{
+			  fill:"#02b2ff",
+			  stroke:"#fff",
+			  "stroke-width":1,
+			  "stroke-opacity":1
+		  },
+		  hover:{
+			  fill:"#35e2ff",
+			  "fill-opacity":"1"
+			 
+		  },
+		  selected:{
+			  fill:"#0491ce",
+			  "fill-opacity":"10"
+			 
+		  }
+		  
+	  },
+		  onRegionClick: function (event, code){
+			document.getElementById('form_tarea_lote').value=code;
+			
+			} ,
+		  onRegionLabelShow: function (event,label, code){
+		  
+			  label.html("<h1>Lote "+code+"</h1>area:  mts.");
+			  //window.location = 'page.php?code=' + code;
+		  }
+		   
+	  })
+		  
+    
+});
+</script>
+<br/><br/>
+<div class="widget">
+	<div class="widget-header">
+		<h3><i class="fa fa-edit"></i>Nueva Tarea</h3>
+	</div>
+	<div id="widget-tarea" class="widget-content">
+		<form action="{{ path('tarea_create') }}" method="POST" {{ form_enctype(formulario) }} >
+               
+			<div class="row">
+				
+				<div class="col-md-12">
+					<fieldset>
+						<legend>{{ form_label(formulario.tipoTarea) }}</legend>
+								<div class="col-md-3 form-group">
+									{{ form_widget(formulario.tipoTarea , { 'attr': {"class":"form-control"}}) }}
+									{{ form_errors(formulario.tipoTarea) }}
+								</div>
+								
+								
+								<legend>{{ form_label(formulario.lote) }}</legend>
+								<div align="center"><div id="world-map" style="width: auto; height: 500px"></div></div>
+								{{ form_widget(formulario.lote) }}
+								{{ form_errors(formulario.lote) }}
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<fieldset>
+						<legend>{{ form_label(formulario.empleado) }}</legend>
+							{{ form_widget(formulario.empleado) }}
+							{{ form_errors(formulario.empleado) }}
+							
+							<!--for emp in formulario.empleado.vars.data
+							val emp.id
+							endfor -->
+						
+					</fieldset>
+				</div>
+				<div class="col-md-6">	
+					<fieldset>
+						<legend>{{ form_label(formulario.registroBodega) }}</legend>
+						<h5><i class="fa fa-plus-circle text-primary"></i> <a href="" id="add">Añadir</a></h5>	
+							
+							{{ form_widget(formulario.registroBodega) }}
+							{{ form_errors(formulario.registroBodega) }}
+							
+							{{ form_rest(formulario) }}
+                                                <button class="btn btn-primary" type="submit" >Guardar</button>
+
+					</fieldset>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

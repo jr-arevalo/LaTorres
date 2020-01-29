@@ -1,0 +1,209 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+  var listaTipoTarea=document.getElementById('form_tarea_tipoTarea');
+  listaTipoTarea.selectedIndex={{idTipoTarea-1}};
+  listaTipoTarea.focus();
+  
+  var lista=document.getElementById('form_tarea_empleado');
+  for (var i = 0; i <lista.options.length; i++){
+		
+			if(lista.options[i].getAttribute("selected")=="selected")
+			{		
+			document.getElementById('empleados_seleccionados').innerHTML+='<div id="'+lista.options[i].value+'" ondblclick="quitar(this);"> '+lista.options[i].innerHTML+'</div>';
+			}
+	}
+  
+  quitar=function (div){
+ 
+  var lista=document.getElementById('form_tarea_empleado');
+	for (var i = 0; i <lista.options.length; i++){
+			
+			if(div.id==lista.options[i].value){		
+				lista.options[i].removeAttribute("selected");
+				}
+			}
+			div.parentNode.removeChild(div);
+  }
+anadir=function (div){
+	
+			document.getElementById('empleados_seleccionados').innerHTML+='<div id="'+div.id+'" ondblclick="quitar(this);"> '+div.innerHTML+'</div>';
+			var lista=document.getElementById('form_tarea_empleado');
+			for (var i = 0; i <lista.options.length; i++){
+			if(div.id==lista.options[i].value){
+			lista.options[i].setAttribute("selected","selected");
+			}
+			
+		}
+}
+	
+ var txt_buscar=document.getElementById('txt_buscar');
+  
+  txt_buscar.onkeyup = function() {
+	  $.ajax({
+		  url: "{{path ('buscar_usuario')}}",
+		  method: 'POST',
+		  data: { usu:txt_buscar.value  },
+		  success: function(respuesta) {
+		    
+				  document.getElementById('empleados_buscados').innerHTML=respuesta;
+			  
+		  
+			  
+		  },
+		  error: function() { alert('Se ha producido un error'); }
+	  });
+  }
+  
+ 
+  var lista = document.getElementById('form_tarea_tipoTarea');
+	lista.onchange = function() {
+	var id = lista.options[lista.selectedIndex].value;
+	$.ajax({
+			url: "{{path ('tarea_tipo')}}",
+			method: 'GET',
+			data: { tipoTarea: id },
+			success: function(respuesta) {
+			$('#tarea').html(respuesta);
+			
+			},
+			error: function() { alert('Se ha producido un error'); }
+			});
+	};
+    $(function(){
+		
+      $('#world-map').vectorMap({
+		map: 'latorres',
+		regionsSelectable:true,
+		regionsSelectableOne:true,
+		backgroundColor: 'transparent',
+	   regionStyle:{
+		  initial:{
+			  fill:"#02b2ff",
+			  stroke:"#fff",
+			  "stroke-width":1,
+			  "stroke-opacity":1
+		  },
+		  hover:{
+			  fill:"#35e2ff",
+			  "fill-opacity":"1"
+			 
+		  },
+		  selected:{
+			  fill:"#0491ce",
+			  "fill-opacity":"10"
+			 
+		  }
+		  
+	  },
+		  onRegionClick: function (event, code){
+			document.getElementById('form_tarea_lote').value=code;
+			
+			} ,
+		  onRegionLabelShow: function (event,label, code){
+		  
+			  label.html("<h1>Lote "+code+"</h1>area:  mts.");
+			  //window.location = 'page.php?code=' + code;
+		  }
+		   
+	  })
+		  
+    });
+});
+  </script>
+<form action="{{ path('tarea_create') }}" method="POST" {{ form_enctype(formulario) }} >
+<div class="row contenedor">
+	<div class="col c12 panel">
+		
+		{{ form_row(formulario.tipoTarea) }}
+		{{ form_row(formulario.lote) }}
+		<div id="world-map" style="width: 700px; height: 500px"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="row contenedor">
+	<div class="col c6 panel">
+		{{ form_row(formulario.empleado) }}
+		<label for="txt_buscar" >Buscar Empleado</label>
+		<input id="txt_buscar" type="text"/>
+		<div id="empleados_buscados" class="lista_usuario"></div>
+		<div id="empleados_seleccionados" class="lista_usuario"></div>
+
+		<!--for emp in formulario.empleado.vars.data
+		val emp.id
+		 endfor -->
+	</div>
+	<div class="col c6 panel">			
+		<script type="text/javascript">
+			// keep track of how many email fields have been rendered
+			//replace({'/__name__label__/g':'Empleado __name__label__'})
+			var empleadosCount = '{{ formulario.registroBodega | length }}';
+
+			jQuery(document).ready(function() {
+			
+				jQuery('#add').click(function() {
+					var insumosList = jQuery('#form_tarea_registroBodega');
+
+					// grab the prototype template
+					var newWidget = insumosList.attr('data-prototype');
+					// replace the "$$name$$" used in the id and name of the prototype
+					// with a number that's unique to your emails
+					// end name attribute looks like name="contact[emails][2]"
+					
+					newWidget = newWidget.replace(/__name__label__/g, "Insumo "+(++empleadosCount));
+					newWidget = newWidget.replace(/__name__/g, empleadosCount);
+				   
+
+					// create a new list element and add it to the list
+					var newLi = jQuery('<li></li>').html(newWidget);
+					newLi.appendTo(jQuery('#form_tarea_registroBodega'));
+
+					return false;
+				});
+			})
+		</script>	
+		{{ form_label(formulario.registroBodega) }}
+		<a href="" id="add">Añadir +</a>
+		{{form_widget(formulario.registroBodega)}}
+	{{form_errors(formulario.registroBodega)}}
+	
+<script type="text/javascript">
+			// keep track of how many email fields have been rendered
+			//replace({'/__name__label__/g':'Empleado __name__label__'})
+			var empleadosCount = '{{ formulario.cajasProd | length }}';
+
+			jQuery(document).ready(function() {
+			
+				jQuery('#addCajasProd').click(function() {
+					var cajasProdList = jQuery('#form_tarea_cajasProd');
+
+					// grab the prototype template
+					var newWidget = cajasProdList.attr('data-prototype');
+					// replace the "$$name$$" used in the id and name of the prototype
+					// with a number that's unique to your emails
+					// end name attribute looks like name="contact[emails][2]"
+					
+					newWidget = newWidget.replace(/__name__label__/g, "Tipo de Caja "+(++empleadosCount));
+					newWidget = newWidget.replace(/__name__/g, empleadosCount);
+				   
+
+					// create a new list element and add it to the list
+					var newLi = jQuery('<li></li>').html(newWidget);
+					newLi.appendTo(jQuery('#form_tarea_cajasProd'));
+
+					return false;
+				});
+			})
+		</script>	
+	
+	{{form_label(formulario.cajasProd)}}
+	<a href="" id="addCajasProd">Añadir +</a>		
+	{{form_widget(formulario.cajasProd)}}
+	{{form_errors(formulario.cajasProd)}}
+	
+	{{ form_rest(formulario) }}
+	<input class="boton" type="submit" value="Guardar" />
+	</div>
+	<div class="clear"></div>
+</div>
+</form>

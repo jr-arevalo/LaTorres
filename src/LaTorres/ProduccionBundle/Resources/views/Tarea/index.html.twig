@@ -1,0 +1,159 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Tareas{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{asset('js/bootstrap-editable.min.js')}}"></script>
+<script src="{{asset('js/king-elements.min.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/king-table.min.js')}}"></script>
+<script src="{{asset('js/comun.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.bootstrap.js')}}"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+                           elemento=$('#sub_tar')
+	elemento.addClass('active');
+	elemento.parent().addClass('open');
+	elemento.parent().parent().addClass('active');
+   $('.frm_modal').click(function(){
+          funcRespuesta=function(respuesta) {  $('.modal-dialog').html(respuesta);	}
+	Ajax("{{path ('tarea_finalizar')}}",{ idTarea: this.id },funcRespuesta);
+            
+        });
+});
+</script>
+{% endblock %}
+
+{% block main_header %}
+<h2>Tareas</h2>
+<em>Tareas en Ejecucion y Tareas Terminadas</em>
+{% endblock %}
+
+{% block main_content %}
+<div class="row ">
+	<div class="col-md-12">
+		<h5><i class="fa fa-plus-circle text-primary"></i> <a href="{{path('tarea_nuevo')}}" id="add">Nueva Tarea</a></h5>    
+	</div>
+
+
+ <div class="col-md-6">
+<div class="widget">
+		<div class="widget-header">
+			<h3><i class="fa fa-bars"></i>Tareas Del D&iacute;a</h3>
+		</div>
+		<div class="widget-content ">
+		
+		{%if entities%}
+                
+                   
+		<table class="table table-bordered  ">
+			<thead >
+				<tr >
+					<th >Tipo</th>
+					<th class="text-center">Lote</th>
+					<th width="20%">No Epleados</th>
+					<th  class="text-center" width="35%">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for entity in entities %}
+                            
+				<tr>
+					<td><a href="{{ path('tarea_show', { 'id': entity.id }) }}">{{ entity.tipoTarea }}</a></td>
+					<td class="text-center">{{ entity.lote }}</td>
+					{%set emps=""%}
+					{% for emp in entity.empleado %}{%set emps=emps~emp~"<br/>"%}{% endfor %}
+					<td class="text-center"><span class="text-primary popover-hover" data-container="body" data-toggle="popover" data-placement="bottom" title="<i class='fa fa-user'></i> Empleados Añadidos"data-content="{{emps}}">{{ entity.empleado | length}}</span></td>
+					<td class="text-center">
+						
+						<div class="btn-group widget-header-toolbar">
+							<a href="{{ path('tarea_show', { 'id': entity.id }) }}" class="btn btn-link" title="Detalle Tarea"><i class="fa fa-search-plus"></i></a>
+							<a href="{{ path('tarea_editar', { 'id': entity.id }) }}" class="btn btn-link" title="Editar Tarea"><i class="fa fa-pencil"></i></a>
+							<a id="{{entity.id}}" href="#" class="btn btn-link frm_modal" data-toggle="modal" data-target="#myModal"title="Terminar Tarea" ><i class="fa fa-check"></i></a>
+							
+							
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+								<div class="modal-dialog">
+                                                                    
+								</div>
+							</div>
+						
+						</div>
+					</td>
+				</tr>
+			
+			{% endfor %}
+			</tbody>
+                        
+		</table>
+                                                       
+		{% else %}
+				<p>No se han asignado tareas para Hoy</p>
+		{%endif%}
+ </div>       
+</div>  
+    
+</div>
+  <div class="col-md-6">
+                <div class="widget widget-table">
+                               <div class="widget-header">
+                                       <h3><i class="fa fa-bars"></i>Tareas Terminadas</h3>
+                               </div>
+                               <div class="widget-content">
+                                   {%if terminadas%}
+                
+                   
+		<table class="table table-sorting datatable table-bordered  ">
+			<thead >
+				<tr >
+					
+                                                                                                                                    <th width="23%">Fecha</th>
+                                                                                                                                    <th >Tipo</th>
+					<th class="text-center">Lote</th>
+					<th width="22%">No Epleados</th>
+                                                                                                                                       
+					<th  class="text-center" width="15%">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for terminada  in terminadas %}
+				<tr>
+                                    <td>{{ terminada.fecha|date('d / M / Y') }}</td>
+					<td><a href="{{ path('tarea_show', { 'id': terminada.id }) }}">{{ terminada.tipoTarea }}</a></td>
+					<td class="text-center">{{ terminada.lote }}</td>
+					{%set emps=""%}
+					{% for emp in terminada.empleado %}{%set emps=emps~emp~"<br/>"%}{% endfor %}
+					<td class="text-center"><span class="text-primary popover-hover" data-container="body" data-toggle="popover" data-placement="bottom" title="<i class='fa fa-user'></i> Empleados Añadidos"data-content="{{emps}}">{{ terminada.empleado | length}}</span></td>
+					<td class="text-center">
+						
+						<div class="btn-group widget-header-toolbar">
+							<a href="{{ path('tarea_show', { 'id': terminada.id }) }}" class="btn btn-link" title="Detalle Tarea"><i class="fa fa-search-plus"></i></a>
+							
+							
+							
+						
+						</div>
+					</td>
+				</tr>
+			
+			{% endfor %}
+			</tbody>
+                        
+		</table>
+                                                       
+		{% else %}
+				<p>No se han asignado tareas para Hoy</p>
+		{%endif%}
+                               </div>
+               </div>
+      </div>
+</div>
+
+    
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<h1>Insumo</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Detalle</th>
+            <td>{{ entity.detalle }}</td>
+        </tr>
+        <tr>
+            <th>Cantstock</th>
+            <td>{{ entity.cantStock }}</td>
+        </tr>
+        <tr>
+            <th>Tipoinsumo</th>
+            <td>{{ entity.tipoInsumo }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('bodega') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('bodega_insumo_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('bodega_insumo_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

@@ -1,0 +1,22 @@
+<select id="tipoTareas">
+{% for tipoTarea in tiposTarea %}
+<option value="{{ tipoTarea.detalle }}">{{ tipoTarea.detalle }}</option>
+{% endfor %}
+</select>
+<script type="text/javascript">
+var lista = document.getElementById('tipoTareas');
+lista.onchange = function() {
+var tarea = lista.options[lista.selectedIndex].value;
+var peticion = $.ajax({
+				url: "{{path ('cambiar_tarea')}}",
+				method: 'POST',
+				data: { tipoTarea: tarea },
+				success: function(respuesta) {
+				$('#tarea').html("<h1>Datos de "+respuesta.cambio+"</h1>");
+				
+				},
+				error: function() { alert('Se ha producido un error'); }
+				});
+
+};
+</script>

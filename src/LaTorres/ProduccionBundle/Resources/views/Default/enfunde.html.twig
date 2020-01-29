@@ -1,0 +1,29 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Producci&oacute;n{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$('#men_panCon').addClass('active');
+});
+</script>
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="active"><i class="fa fa-dashboard"></i>Tablero de Control</li>		
+{% endblock %}
+
+{% block main_header %}
+<h2>ENFUNDE</h2>
+<em>Valores de producci&oacute;n de las Tareas de la Hacienda</em>
+{% endblock %}
+
+{% block main_content %} 
+
+
+{% endblock %}

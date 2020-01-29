@@ -1,0 +1,369 @@
+{% extends '::base.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %} {% endblock %}	
+
+{% block body %}
+	<!-- WRAPPER -->
+	<div class="wrapper">
+		
+		<!-- TOP BAR -->
+		<div class="top-bar">
+			<div class="container">
+				<div class="row">
+					<!-- logo -->
+					<div class="col-md-2 logo">
+						<a href="index.html"><img src="{{asset('img/kingadmin-logo-white.png')}}" alt="La Torres"></a>
+					</div>
+					<!-- end logo -->
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="top-bar-right">
+									<!-- responsive menu bar icon -->
+									<a href="#" class="hidden-md hidden-lg main-nav-toggle"><i class="fa fa-bars"></i></a>
+									<!-- end responsive menu bar icon -->
+								
+									<div class="notifications">
+										<ul>
+											<!-- notification: inbox >
+											<li class="notification-item inbox">
+												<div class="btn-group">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="fa fa-envelope"></i><span class="count">2</span>
+														<span class="circle"></span>
+													</a>
+
+													<ul class="dropdown-menu" role="menu">
+														<li class="notification-header">
+															<em>You have 2 unread messages</em>
+														</li>
+														<li class="inbox-item clearfix">
+															<a href="#">
+																<div class="media">
+																	<div class="pull-left" href="#">
+																		<img class="media-object" src="assets/img/user1.png" alt="Antonio">
+																	</div>
+																	<div class="media-body">
+																		<h5 class="media-heading name">Antonius</h5>
+																		<p class="text">The problem just happened this morning. I can't see ...</p>
+																		<span class="timestamp">4 minutes ago</span>
+																	</div>
+																</div>
+															</a>
+														</li>
+														<li class="inbox-item unread clearfix">
+															<a href="#">
+																<div class="media">
+																	<div class="pull-left" href="#">
+																		<img class="media-object" src="assets/img/user2.png" alt="Antonio">
+																	</div>
+																	<div class="media-body">
+																		<h5 class="media-heading name">Michael</h5>
+																		<p class="text">Hey dude, cool theme!</p>
+																		<span class="timestamp">2 hours ago</span>
+																	</div>
+																</div>
+															</a>
+														</li>
+														<li class="inbox-item unread clearfix">
+															<a href="#">
+																<div class="media">
+																	<div class="pull-left" href="#">
+																		<img class="media-object" src="assets/img/user3.png" alt="Antonio">
+																	</div>
+																	<div class="media-body">
+																		<h5 class="media-heading name">Stella</h5>
+																		<p class="text">Ok now I can see the status for each item. Thanks! :D</p>
+																		<span class="timestamp">Oct 6</span>
+																	</div>
+																</div>
+															</a>
+														</li>
+														<li class="inbox-item clearfix">
+															<a href="#">
+																<div class="media">
+																	<div class="pull-left" href="#">
+																		<img class="media-object" src="assets/img/user4.png" alt="Antonio">
+																	</div>
+																	<div class="media-body">
+																		<h5 class="media-heading name">Jane Doe</h5>
+																		<p class="text"><i class="fa fa-reply"></i> Please check the status of your ...</p>
+																		<span class="timestamp">Oct 2</span>
+																	</div>
+																</div>
+															</a>
+														</li>
+														<li class="inbox-item clearfix">
+															<a href="#">
+																<div class="media">
+																	<div class="pull-left" href="#">
+																		<img class="media-object" src="assets/img/user5.png" alt="Antonio">
+																	</div>
+																	<div class="media-body">
+																		<h5 class="media-heading name">John Simmons</h5>
+																		<p class="text"><i class="fa fa-reply"></i> I've fixed the problem :)</p>
+																		<span class="timestamp">Sep 12</span>
+																	</div>
+																</div>
+															</a>
+														</li>
+														<li class="notification-footer">
+															<a href="#">View All Messages</a>
+														</li>
+													</ul>
+												</div>
+											</li>
+											<! end notification: inbox -->
+
+											<!-- notification: general >
+											<li class="notification-item general">
+												<div class="btn-group">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														<i class="fa fa-bell"></i><span class="count">8</span>
+														<span class="circle"></span>
+													</a>
+													<ul class="dropdown-menu" role="menu">
+														<li class="notification-header">
+															<em>You have 8 notifications</em>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-comment green-font"></i>
+																<span class="text">New comment on the blog post</span>
+																<span class="timestamp">1 minute ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-user green-font"></i>
+																<span class="text">New registered user</span>
+																<span class="timestamp">12 minutes ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-comment green-font"></i>
+																<span class="text">New comment on the blog post</span>
+																<span class="timestamp">18 minutes ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-shopping-cart red-font"></i>
+																<span class="text">4 new sales order</span>
+																<span class="timestamp">4 hours ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-edit yellow-font"></i>
+																<span class="text">3 product reviews awaiting moderation</span>
+																<span class="timestamp">1 day ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-comment green-font"></i>
+																<span class="text">New comment on the blog post</span>
+																<span class="timestamp">3 days ago</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-comment green-font"></i>
+																<span class="text">New comment on the blog post</span>
+																<span class="timestamp">Oct 15</span>
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="fa fa-warning red-font"></i>
+																<span class="text red-font">Low disk space!</span>
+																<span class="timestamp">Oct 11</span>
+															</a>
+														</li>
+														<li class="notification-footer">
+															<a href="#">View All Notifications</a>
+														</li>
+													</ul>
+												</div>
+											</li>
+											< end notification: general -->
+										</ul>
+									</div>
+
+									<!-- logged user and the menu -->
+									<div class="logged-user">
+										<div class="btn-group">
+											<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+												<span class="name">{{ app.user}}</span> <span class="caret"></span>
+											</a>
+											<ul class="dropdown-menu" role="menu">
+												<li>
+													<a href="#">
+														<i class="fa fa-user"></i>
+														<span class="text">Perfil</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="fa fa-cog"></i>
+														<span class="text">Cuenta</span>
+													</a>
+												</li>
+												<li>
+													<a href="{{path('usuario_logout')}}">
+														<i class="fa fa-power-off"></i>
+														<span class="text">Salir</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- end logged user and the menu -->
+								</div><!-- /top-bar-right -->
+							</div>
+						
+						</div><!-- /row -->
+					</div>
+					
+				</div><!-- /row -->
+			</div><!-- /container -->
+			<div style="clear:both"></div>
+		</div><!-- /top -->
+		
+
+		<!-- BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+		<div class="bottom">
+			<div class="container">
+				<div class="row">
+					<!-- left sidebar -->
+					<div class="col-md-2 left-sidebar">
+
+						<!-- main-nav -->
+						<nav class="main-nav">
+							
+							<ul class="main-menu">
+								<li id="men_panCon"><a href="{{path('panel_control')}}"><i class="fa fa-dashboard fa-lg"></i><span class="text">Tablero de Control</span></a></li>
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-edit fa-lg"></i><span class="text">Administraci&oacute;n</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										<li id="sub_tar"><a href="{{path('tarea')}}"><span class="text">Tareas</span></a></li>
+										<li id="sub_emp"><a href="{{path('empleado')}}"><span class="text">Empleados</span></a></li>
+										<li><a href="form-layouts.html"><span class="text">Comercializadoras</span></a></li>
+										
+									</ul>
+								</li>
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-cubes fa-lg"></i><span class="text">Bodega</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										<li id="sub_ins"><a href="{{path('bodega_insumo')}}"><span class="text">Insumos</span></a></li>
+										<li  id="sub_mov"><a href="{{path('registrobodega')}}"><span class="text">Movimientos</span></a></li>
+										<li><a href="page-knowledgebase.html"><span class="text">Inventario</span></a></li>
+									</ul>
+								</li>
+								<li id="men_pro"><a href="{{path('produccion')}}"><i class="fa fa-table fa-lg"></i><span class="text">Producci&oacute;n</span></a></li>
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-bar-chart-o fa-lg"></i><span class="text">Estad&iacute;sticas</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										<li><a href="charts-statistics.html"><span class="text">Papiro</span></a></li>
+										<li><a href="charts-statistics-interactive.html"><span class="text">Anuario</span></a></li>
+										<li><a href="charts-statistics-real-time.html"><span class="text">Insumos</span></a></li>
+										<li><a href="charts-d3charts.html"><span class="text">Tareas</span></a></li>
+									</ul>
+								</li>
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-usd fa-lg"></i><span class="text">Finanzas</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										
+										<li><a href="ui-elements-buttons.html"><span class="text">Ventas</span></a></li>
+										<li><a href="ui-elements-icons.html"><span class="text">Salarios</span></a></li>
+										<li><a href="ui-elements-flash-message.html"><span class="text">Gastos</span></a></li>
+									</ul>
+								</li>
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-file-text-o fa-lg"></i><span class="text">Reportes</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										<li><a href="ui-elements-general.html"><span class="text"> </span></a></li>
+										<li><a href="ui-elements-buttons.html"><span class="text"> </span></a></li>
+										<li><a href="ui-elements-icons.html"><span class="text"></span></a></li>
+										<li><a href="ui-elements-flash-message.html"><span class="text"> </span></a></li>
+									</ul>
+								</li>
+								
+								<li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-gears fa-lg"></i><span class="text">Sistema</span>
+									<i class="toggle-icon fa fa-angle-down"></i></a>
+									<ul class="sub-menu ">
+										<li><a href="ui-elements-general.html"><span class="text">Configuraci&oacute;n</span></a></li>
+										<li><a href="{{path('usuario')}}"><span class="text">Usuarios</span></a></li>
+										<li><a href="ui-elements-icons.html"><span class="text">Otros</span></a></li>
+									</ul>
+								</li>
+								
+						
+							</ul>
+						</nav><!-- /main-nav -->
+
+						<div class="sidebar-minified js-toggle-minified">
+							<i class="fa fa-angle-left"></i>
+						</div>
+
+						<!-- sidebar content -->
+						<div class="sidebar-content">
+							
+						</div>
+						<!-- end sidebar content -->
+					</div>
+					<!-- end left sidebar -->
+
+					<!-- content-wrapper -->
+										
+					<div class="col-md-10 content-wrapper">
+						<div class="row">
+							<div class="col-md-4 ">
+								<ul class="breadcrumb">
+									{% block breadcrumb %}{% endblock %}
+								</ul>
+							</div>
+							<!--div class="col-md-8 ">
+								<div class="top-content">
+									<ul class="list-inline mini-stat">
+										<li>
+											<h5>LIKES <span class="stat-value stat-color-orange"><i class="fa fa-plus-circle"></i> 81,450</span></h5>
+											<span id="mini-bar-chart1" class="mini-bar-chart"><canvas height="25" width="53" style="display: inline-block; vertical-align: top; width: 53px; height: 25px;"></canvas></span>
+										</li>
+										<li>
+											<h5>SUBSCRIBERS <span class="stat-value stat-color-blue"><i class="fa fa-plus-circle"></i> 150,743</span></h5>
+											<span id="mini-bar-chart2" class="mini-bar-chart"><canvas height="25" width="53" style="display: inline-block; vertical-align: top; width: 53px; height: 25px;"></canvas></span>
+										</li>
+										<li>
+											<h5>CUSTOMERS <span class="stat-value stat-color-seagreen"><i class="fa fa-plus-circle"></i> 43,748</span></h5>
+											<span id="mini-bar-chart3" class="mini-bar-chart"><canvas height="25" width="53" style="display: inline-block; vertical-align: top; width: 53px; height: 25px;"></canvas></span>
+										</li>
+									</ul>
+								</div>
+							</div-->
+						</div>
+						<!-- main -->
+						<div class="content">
+							<div class="main-header">
+							{%block main_header%}{% endblock %}								
+							</div>
+
+							<div class="main-content">							
+							{%block main_content%}{%endblock%}	
+							</div><!-- /main-content -->
+						</div><!-- /main -->
+					</div><!-- /content-wrapper -->
+				</div><!-- /row -->
+			</div><!-- /container -->
+		</div>
+		<!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+		<div class="push-sticky-footer"></div>
+	</div><!-- /wrapper -->
+
+	{% endblock %}
+	
+	{% block javascripts %}
+	<script src="{{asset('js/king-common.min.js')}}"></script>
+	{% endblock %}
