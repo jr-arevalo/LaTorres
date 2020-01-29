@@ -1,0 +1,192 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Nueva Tarea{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/jquery-jvectormap-1.2.2.css')}}" type="text/css" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+ {{ parent() }}
+  <script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js')}}"></script>
+  <script src="{{ asset('bundles/produccion/js/jvectormap.latorres.js')}}"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  
+  var lista=document.getElementById('form_tarea_empleado');
+  for (var i = 0; i <lista.options.length; i++){
+		
+			if(lista.options[i].getAttribute("selected")=="selected")
+			{		
+			document.getElementById('empleados_seleccionados').innerHTML+='<div id="'+lista.options[i].value+'" ondblclick="quitar(this);"> '+lista.options[i].innerHTML+'</div>';
+			}
+	}
+  
+  quitar=function (div){
+ 
+  var lista=document.getElementById('form_tarea_empleado');
+	for (var i = 0; i <lista.options.length; i++){
+			
+			if(div.id==lista.options[i].value){		
+				//var emp = lista.options[i];
+				//var nemp=emp;
+				//lista.removeChild(emp);
+				lista.options[i].removeAttribute("selected");
+				//lista.appendChild(nemp);sTexto.startsWith("ca")
+				//if("hola tu".match(/^tu/)){}         // Devuelve ["tu"]
+				}
+			}
+			div.parentNode.removeChild(div);
+  }
+anadir=function (div){
+	
+			document.getElementById('empleados_seleccionados').innerHTML+='<div id="'+div.id+'" ondblclick="quitar(this);"> '+div.innerHTML+'</div>';
+			var lista=document.getElementById('form_tarea_empleado');
+			for (var i = 0; i <lista.options.length; i++){
+			if(div.id==lista.options[i].value){
+			lista.options[i].setAttribute("selected","selected");
+			}
+			
+		}
+}
+	
+  
+  var txt_buscar=document.getElementById('txt_buscar');
+  
+  txt_buscar.onkeyup = function() {
+	  $.ajax({
+		  url: "{{path ('buscar_usuario')}}",
+		  method: 'POST',
+		  data: { usu:txt_buscar.value  },
+		  success: function(respuesta) {
+		    
+				  document.getElementById('empleados_buscados').innerHTML=respuesta;
+			  
+		  
+			  
+		  },
+		  error: function() { alert('Se ha producido un error'); }
+	  });
+  }
+  
+ 
+  var lista = document.getElementById('form_tarea_tipoTarea');
+	lista.onchange = function() {
+	var id = lista.options[lista.selectedIndex].value;
+	if(id==2){
+		$.ajax({
+			url: "{{path ('cambiar_tarea')}}",
+			method: 'POST',
+			data: { id: id },
+			success: function(respuesta) {
+			$('#tarea').html("<h1>Datos de "+respuesta.cambio+"</h1>");
+			
+			},
+			error: function() { alert('Se ha producido un error'); }
+			});
+
+		}
+	};
+    $(function(){
+		
+      $('#world-map').vectorMap({
+		map: 'latorres',
+		regionsSelectable:true,
+		regionsSelectableOne:true,
+		backgroundColor: 'transparent',
+	   regionStyle:{
+		  initial:{
+			  fill:"#02b2ff",
+			  stroke:"#fff",
+			  "stroke-width":1,
+			  "stroke-opacity":1
+		  },
+		  hover:{
+			  fill:"#35e2ff",
+			  "fill-opacity":"1"
+			 
+		  },
+		  selected:{
+			  fill:"#0491ce",
+			  "fill-opacity":"10"
+			 
+		  }
+		  
+	  },
+		  onRegionClick: function (event, code){
+			 //	document.getElementById('form_tarea_lote').selectedIndex=code;
+			
+			} ,
+		  onRegionLabelShow: function (event,label, code){
+		  
+			  label.html("<h1>Lote "+code+"</h1>area:  mts.");
+			  //window.location = 'page.php?code=' + code;
+		  }
+		   
+	  })
+		  
+    });
+});
+  </script>
+{% endblock %}
+{% block menuSec %}
+<a href="{{ path('tarea') }}">Tareas</a> 
+<a href="{{ path('empleado') }}">Empleados</a> 
+{% endblock %}
+{% block principal %}
+<form action="{{ path('tarea_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(formulario) }}>
+
+{{ form_row(formulario.tipoTarea) }}
+<div id="tarea"></div>
+
+{{ form_row(formulario.lote) }}
+<div id="world-map" style="width: 700px; height: 500px"></div>
+
+{{ form_row(formulario.empleado) }}
+<label for="txt_buscar" >Buscar Empleado</label>
+<input id="txt_buscar" type="text"/>
+<div id="empleados_buscados" class="lista_usuario"></div>
+<div id="empleados_seleccionados" class="lista_usuario"></div>
+
+<!--for emp in formulario.empleado.vars.data
+
+val emp.id
+ endfor -->
+
+ 
+	
+		
+<script type="text/javascript">
+    // keep track of how many email fields have been rendered
+	//replace({'/__name__label__/g':'Empleado __name__label__'})
+    var empleadosCount = '{{ formulario.empleado | length }}';
+
+    jQuery(document).ready(function() {
+	
+        jQuery('#add').click(function() {
+            var empleadosList = jQuery('#form_tarea_empleado');
+
+            // grab the prototype template
+            var newWidget = empleadosList.attr('data-prototype');
+            // replace the "$$name$$" used in the id and name of the prototype
+            // with a number that's unique to your emails
+            // end name attribute looks like name="contact[emails][2]"
+            
+			newWidget = newWidget.replace(/__name__label__/g, "Empleado "+(++empleadosCount));
+			newWidget = newWidget.replace(/__name__/g, empleadosCount);
+           
+
+            // create a new list element and add it to the list
+            var newLi = jQuery('<li></li>').html(newWidget);
+            newLi.appendTo(jQuery('#form_tarea_empleado'));
+
+            return false;
+        });
+    })
+	</script>	
+	
+		
+{{ form_row(formulario.cantidad) }}
+{{ form_rest(formulario) }}
+<input class="boton" type="submit" value="Editar" />
+</form>
+{% endblock %}

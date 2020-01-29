@@ -1,0 +1,54 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Tareas{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+
+
+{% block main_header %}
+<h2>USUARIOS</h2>
+<em>Administra los usuarios que usan el Sistema</em>
+{% endblock %}	
+							
+{% block main_content %}
+   <a href="{{ path('usuario_new') }}">
+            + Nuevo Usuario
+        </a>
+<h1>Lista de Usuarios </h1>
+
+<table class="table table-bordered  ">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Tipo de Usuario</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.apellido }}</td>
+            <td>{{ entity.tipoUsuario }}</td>
+            <td>{{ entity.username }}</td>
+            <td>{{ entity.password }}</td>
+            <td>
+                        <a href="{{ path('usuario_show', { 'id': entity.id }) }}" class="btn btn-link" title="Detalle Tarea"><i class="fa fa-search-plus"></i></a>
+                         <a href="{{ path('usuario_edit', { 'id': entity.id }) }}" class="btn btn-link" title="Editar Tarea"><i class="fa fa-pencil"></i></a>
+             </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+     
+{% endblock %}

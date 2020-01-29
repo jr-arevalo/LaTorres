@@ -1,0 +1,43 @@
+<h1>Corte list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Cantperdido</th>
+            <th>Cantrecuperado</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('corte_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.cantidad }}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.cantPerdido }}</td>
+            <td>{{ entity.cantRecuperado }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('corte_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('corte_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('corte_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

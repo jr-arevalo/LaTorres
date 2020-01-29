@@ -1,0 +1,55 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Producci&oacute;n{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$('#men_pro').addClass('active');
+});
+</script>
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="active"><i class="fa fa-dashboard"></i>Tablero de Control</li>		
+{% endblock %}
+
+{% block main_header %}
+<h2>PRODUCCI&Oacute;N</h2>
+<em>Valores de producci&oacute;n de las Tareas de la Hacienda</em>
+{% endblock %}
+
+{% block main_content %} 
+{% set iconos={'Enfunde':'calendar-o','Corte':'cut','Ensunche':'lastfm','Deshoje':'leaf','Deshije':'tree','Riego':'tint',
+'Fumigacion':'plane','Fertilizacion':'pagelines','Desmane':'hand-o-right','Pesaje':'archive'}%}
+{%set i=0%}
+{% for tipoTarea  in tiposTarea%}
+{% if i==0 %}
+<div class="row ">
+   {% endif%} 
+    <div class="col-md-3">
+        <div class="widget">
+                <div class="widget-header">
+                        <h3><i class="fa fa-bars"></i>{{tipoTarea}}</h3>
+                </div>
+                <div class="widget-content text-center">
+                     <span class="fa-stack fa-4x">
+   <i class="fa fa-circle fa-stack-2x text-primary"></i>
+  <i class="fa fa-{{iconos[tipoTarea~'']}} fa-stack-1x fa-inverse"></i>
+</span> 
+                  <a href="{{path('produccion_tarea',{'tipoTarea':tipoTarea})}}" class=" btn btn-block btn-default">Ver Datos</a>
+                </div>
+   </div>
+</div>
+{% if i==3 %}
+</div>
+   {% endif%}     
+{% if i<3%} {% set i=i+1%}{% else%}  {% set i=0%}   {% endif%}     
+
+ {% endfor %}
+
+{% endblock %}

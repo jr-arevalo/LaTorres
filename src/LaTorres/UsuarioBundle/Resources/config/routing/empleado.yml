@@ -1,0 +1,30 @@
+empleado:
+    pattern:  /
+    defaults: { _controller: "UsuarioBundle:Empleado:index" }
+
+empleado_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "UsuarioBundle:Empleado:show" }
+
+empleado_new:
+    pattern:  /new
+    defaults: { _controller: "UsuarioBundle:Empleado:new" }
+
+empleado_create:
+    pattern:  /create
+    defaults: { _controller: "UsuarioBundle:Empleado:create" }
+    requirements: { _method: post }
+
+empleado_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "UsuarioBundle:Empleado:edit" }
+
+empleado_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "UsuarioBundle:Empleado:update" }
+    requirements: { _method: post }
+
+empleado_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "UsuarioBundle:Empleado:delete" }
+    requirements: { _method: post }

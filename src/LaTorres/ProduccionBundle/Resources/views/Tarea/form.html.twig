@@ -1,0 +1,62 @@
+
+<form action="{{ path('tarea_create') }}" method="POST" {{ form_enctype(formulario) }} >
+<div class="row">
+	<div class="col c12">
+		{{ form_row(formulario.fecha, { 'attr': {'value':'now' | date('Y-m-d')} }) }}
+		{{ form_row(formulario.tipoTarea) }}
+		{{ form_row(formulario.lote) }}
+		<div id="world-map" style="width: 700px; height: 500px"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="row">
+	<div class="col c6">
+		{{ form_row(formulario.empleado) }}
+		<label for="txt_buscar" >Buscar Empleado</label>
+		<input id="txt_buscar" type="text"/>
+		<div id="empleados_buscados" class="lista_usuario"></div>
+		<div id="empleados_seleccionados" class="lista_usuario"></div>
+
+		<!--for emp in formulario.empleado.vars.data
+		val emp.id
+		 endfor -->
+	</div>
+	<div class="col c6">			
+		<script type="text/javascript">
+			// keep track of how many email fields have been rendered
+			//replace({'/__name__label__/g':'Empleado __name__label__'})
+			var empleadosCount = '{{ formulario.empleado | length }}';
+
+			jQuery(document).ready(function() {
+			
+				jQuery('#add').click(function() {
+					var empleadosList = jQuery('#form_tarea_registroBodega');
+
+					// grab the prototype template
+					var newWidget = empleadosList.attr('data-prototype');
+					// replace the "$$name$$" used in the id and name of the prototype
+					// with a number that's unique to your emails
+					// end name attribute looks like name="contact[emails][2]"
+					
+					newWidget = newWidget.replace(/__name__label__/g, "Empleado "+(++empleadosCount));
+					newWidget = newWidget.replace(/__name__/g, empleadosCount);
+				   
+
+					// create a new list element and add it to the list
+					var newLi = jQuery('<li></li>').html(newWidget);
+					newLi.appendTo(jQuery('#form_tarea_registroBodega'));
+
+					return false;
+				});
+			})
+		</script>	
+	<a href="" id="add">Añadir +</a>	
+	{{ form_row(formulario.registroBodega) }}
+			
+	{{ form_row(formulario.cantidad) }}
+	{{ form_rest(formulario) }}
+	<input class="boton" type="submit" value="Guardar" />
+	</div>
+	<div class="clear"></div>
+</div>
+</form>

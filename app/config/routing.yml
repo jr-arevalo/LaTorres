@@ -1,0 +1,47 @@
+reportes:
+    resource: "@ReportesBundle/Resources/config/routing.yml"
+    prefix:   /
+estadisticas:
+    resource: "@EstadisticasBundle/Resources/config/routing.yml"
+    prefix:   /
+bodega:
+    resource: "@BodegaBundle/Resources/config/routing.yml"
+    prefix:   /
+usuario:
+    resource: "@UsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+produccion:
+    resource: "@ProduccionBundle/Resources/config/routing.yml"
+    prefix:   /
+UsuarioBundle_usuario:
+    resource: "@UsuarioBundle/Resources/config/routing/usuario.yml"
+    prefix: /usuario
+ProduccionBundle_tarea:
+    resource: "@ProduccionBundle/Resources/config/routing/tarea.yml"
+    prefix: /tarea
+BodegaBundle_insumo:
+    resource: "@BodegaBundle/Resources/config/routing/insumo.yml"
+    prefix:   /bodega/insumo
+BodegaBundle_tipo_insumo:
+    resource: "@BodegaBundle/Resources/config/routing/tipoInsumo.yml"
+    prefix:   /bodega/tipo-insumo
+UsuarioBundle_empleado:
+     resource: "@UsuarioBundle/Resources/config/routing/empleado.yml"
+     prefix:   /tarea/empleado
+BodegaBundle_movimientos:
+     resource: "@BodegaBundle/Resources/config/routing/registrobodega.yml"
+     prefix:   /bodega/movimientos
+portada:
+    pattern:  /
+    defaults: { _controller: FrameworkBundle:Redirect:redirect,route: panel_control }
+panel_control:
+    pattern:  /panel-control
+    defaults: { _controller: ProduccionBundle:Default:index }
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

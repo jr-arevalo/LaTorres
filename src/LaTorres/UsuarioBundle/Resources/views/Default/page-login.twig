@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/login.css')}}" type="text/css" media="screen"/>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block body %}
+<div class="row">	
+	<br/>
+	<br/>
+	<br/>
+	<form action="{{ path('usuario_login_check') }}" method="post">
+		<div class="col c4 offset-4 cabecera-login ">   
+		Login
+		</div>
+		<div class="col c4 offset-4 cuerpo-login">        
+			
+			<label for="username">Usuario:</label>
+			<input class="form-text" type="text" id="username" name="_username"
+			value="{{ last_username }}" />
+			<br/>
+			<label for="password">Contraseña:</label>
+			<input class="form-text" type="password" id="password" name="_password" />
+			{% if error %}
+			<div class="error">{{ error.message }}</div>
+			{% endif %}
+			
+		</div>
+		<div class="col c4 offset-4 pie-login">   
+		<input type="submit" name="login" value="Acceder" class="boton azul">
+		</div>
+	<div class="clear"></div>		
+	</form>
+	<br/>
+	<br/>
+	<br/>
+<div class="clear"></div>
+</div>
+{% endblock %}

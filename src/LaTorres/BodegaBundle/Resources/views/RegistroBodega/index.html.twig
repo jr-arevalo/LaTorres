@@ -1,0 +1,65 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Movimientos{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script src="{{asset('js/bootstrap-editable.min.js')}}"></script>
+<script src="{{asset('js/king-elements.min.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/king-table.min.js')}}"></script>
+<script src="{{asset('js/comun.js')}}"></script>
+<script src="{{asset('js/datatable/jquery.dataTables.bootstrap.js')}}"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	elemento=$('#sub_mov')
+	elemento.addClass('active');
+	elemento.parent().addClass('open');
+	elemento.parent().parent().addClass('active');
+  
+});
+</script>
+{% endblock %}
+{% block main_header %}
+<h2>MOVIMIENTOS</h2>
+<em>Movimientos realizados dentro de Bodega</em>
+{% endblock %}
+
+{% block main_content %}
+ <div class="widget">
+    <div class="widget-header">
+            <h3><i class="fa fa-bars"></i>Movimientos Realizados</h3>
+    </div>
+    <div class="widget-content ">
+        <ul class="list-unstyled activity-list">
+            <table class="table datatable table-sorting  table-bordered  ">
+            <thead>
+                    <tr>			
+                                    <th class="text-right" >Más Antiguos&nbsp;&nbsp;</th>
+                    </tr>
+            </thead>
+            <tbody>
+      {% for entity in entities %}
+        <tr>
+            <td>
+                  <li>
+                                <i class="fa fa-shopping-cart activity-icon pull-left"></i>
+                                <p>
+                                        Se ha {{ entity.tipoReg }}  {{ entity.cantidad }} <a href="{{path('bodega_insumo',{'id':entity.insumo.id})}}">{{ entity.insumo.tipoInsumo}} </a> en <a href="{{path('bodega_insumo',{'id':entity.tarea.id})}}">{{ entity.tarea.tipoTarea}}</a>
+                                        <span class="timestamp">{{ entity.fecha|date('d / M / Y') }}</span>
+                              
+       
+                        <a href="{{ path('registrobodega_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('registrobodega_edit', { 'id': entity.id }) }}">edit</a>  </p>
+                    </li>
+            </td>
+        </tr>
+    {% endfor %}
+       </tbody>
+    </table>
+           </div>
+</div>
+{% endblock %}

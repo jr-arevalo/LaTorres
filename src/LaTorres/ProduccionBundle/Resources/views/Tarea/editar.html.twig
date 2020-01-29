@@ -1,0 +1,26 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Nueva Tarea{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/jquery-jvectormap-1.2.2.css')}}" type="text/css" media="screen"/>
+{% endblock %}
+
+{% block javascripts %}
+ {{ parent() }}
+  <script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js')}}"></script>
+  <script src="{{ asset('bundles/produccion/js/jvectormap.latorres.js')}}"></script>
+  <script src="{{asset('js/comun.js')}}"></script>
+{% endblock %}
+
+
+
+{% block main_header %}
+<h2>Nueva Tarea</h2>
+<em>the first priority information</em>
+{% endblock %}
+
+{% block main_content %}
+<div id="tarea" class="row">
+{% render "ProduccionBundle:Tarea:tipoTarea" with { 'idTipoTarea': idTipoTarea} %}
+</div>
+{% endblock %}

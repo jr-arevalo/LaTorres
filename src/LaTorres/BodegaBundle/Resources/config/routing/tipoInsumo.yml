@@ -1,0 +1,28 @@
+tipoinsumo:
+    pattern:  /
+    defaults: { _controller: "BodegaBundle:TipoInsumo:index" }
+
+tipoinsumo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BodegaBundle:TipoInsumo:show" }
+
+tipoinsumo_new:
+    pattern:  /new
+    defaults: { _controller: "BodegaBundle:TipoInsumo:new" }
+
+tipoinsumo_create:
+    pattern:  /create
+    defaults: { _controller: "BodegaBundle:TipoInsumo:create" }
+    requirements: { _method: post }
+
+tipoinsumo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BodegaBundle:TipoInsumo:edit" }
+
+tipoinsumo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BodegaBundle:TipoInsumo:update" }
+
+tipoinsumo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BodegaBundle:TipoInsumo:delete" }

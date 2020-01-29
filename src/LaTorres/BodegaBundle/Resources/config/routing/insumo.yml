@@ -1,0 +1,30 @@
+bodega_insumo:
+    pattern:  /
+    defaults: { _controller: "BodegaBundle:Insumo:index" }
+
+bodega_insumo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BodegaBundle:Insumo:show" }
+
+bodega_insumo_new:
+    pattern:  /new
+    defaults: { _controller: "BodegaBundle:Insumo:new" }
+
+bodega_insumo_create:
+    pattern:  /create
+    defaults: { _controller: "BodegaBundle:Insumo:create" }
+    requirements: { _method: post }
+
+bodega_insumo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BodegaBundle:Insumo:edit" }
+
+bodega_insumo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BodegaBundle:Insumo:update" }
+    requirements: { _method: post }
+
+bodega_insumo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BodegaBundle:Insumo:delete" }
+    requirements: { _method: post }

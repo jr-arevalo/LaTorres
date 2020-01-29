@@ -1,0 +1,30 @@
+registrobodega:
+    pattern:  /
+    defaults: { _controller: "BodegaBundle:RegistroBodega:index" }
+
+registrobodega_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BodegaBundle:RegistroBodega:show" }
+
+registrobodega_new:
+    pattern:  /new
+    defaults: { _controller: "BodegaBundle:RegistroBodega:new" }
+
+registrobodega_create:
+    pattern:  /create
+    defaults: { _controller: "BodegaBundle:RegistroBodega:create" }
+    requirements: { _method: post }
+
+registrobodega_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BodegaBundle:RegistroBodega:edit" }
+
+registrobodega_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BodegaBundle:RegistroBodega:update" }
+    requirements: { _method: post }
+
+registrobodega_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BodegaBundle:RegistroBodega:delete" }
+    requirements: { _method: post }

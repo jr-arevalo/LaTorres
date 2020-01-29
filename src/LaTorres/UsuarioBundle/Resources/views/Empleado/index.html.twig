@@ -1,0 +1,80 @@
+{% extends '::extranet.html.twig' %}
+{% block title %}{{ parent() }} Empleados{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{asset('js/winjs/WinJS.js')}}"></script>
+<script src="{{asset('js/winjs/en/ui.strings.js')}}"></script>
+<script src="{{asset('js/winjs/base.js')}}"></script>
+<script src="{{asset('js/winjs/ui.js')}}"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	elemento=$('#sub_emp')
+	elemento.addClass('active');
+	elemento.parent().addClass('open');
+	elemento.parent().parent().addClass('active');
+  
+});
+</script>
+{% endblock %}
+
+{% block main_header %}
+<h2>EMPLEADOS</h2>
+<em>Administra la forma de contactar a los empleados</em>
+{% endblock %}	
+							
+{% block main_content %}
+<div class="row">
+	<div class="col-md-c12">
+		<a href="{{ path('empleado_new') }}">Nuevo +</a>
+	</div>
+
+
+<div id="basicListView" data-win-control="WinJS.UI.ListView"
+    data-win-options="{itemDataSource : DataExample.itemList.dataSource, 
+    itemTemplate: select('#mediumListIconTextTemplate'),
+    layout : {type: WinJS.UI.GridLayout}}">
+</div>
+
+
+<div class="clear"></div>
+</div>
+	<div class="row ">
+		<div class="col-md-12">
+		<h1>Lista de Empleados</h1>
+
+		<table class="table table-bordered  ">
+			<thead>
+				<tr>
+					
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Telefono</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for entity in entities %}
+				<tr >
+					<td>{{ entity.nombre }}</td>
+<td>{{ entity.apellido }}</td>
+					
+					<td>{{ entity.telefono }}</td>
+					<td>
+						<a href="{{ path('empleado_show', { 'id': entity.id }) }}" class="btn btn-link" title="Detalle de Empleado"><i class="fa fa-search-plus"></i></a>
+						  
+						<a href="{{ path('empleado_edit', { 'id': entity.id }) }}" class="btn btn-link" title="Editar Empleado"><i class="fa fa-pencil"></i></a>
+						   
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		</div>
+	</div>
+
+{% endblock %}

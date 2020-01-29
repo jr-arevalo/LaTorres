@@ -1,0 +1,5 @@
+/*  MAKE LAYOUT RESPONSIVE at 480px FOR IPHONE LANDSCAPE ============================================ */
+@media only screen and (max-width: 480px) {
+.cs12,.c12,.c11,c10,c9,c8,c7,c6{width: 98.5%; }
+.cs6{width: 48.5%;} 
+}

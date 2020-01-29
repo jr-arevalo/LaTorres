@@ -1,0 +1,48 @@
+<?php
+
+namespace LaTorres\BodegaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+ /**
+ *@ORM\Table(name="insumo")
+ *@ORM\Entity
+ *@ORM\InheritanceType("JOINED")
+ *@ORM\DiscriminatorColumn(name="tipo_ins", type="string")
+ *@ORM\DiscriminatorMap({"cinta" = "Cinta","suncho" = "Suncho"})
+ * 
+ */ 
+class Insumo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="detalle", type="string", length=50, nullable=true)
+     */
+    private $detalle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cant_stock", type="integer", nullable=true)
+     */
+    private $cantStock;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_insumo", type="string", length=20, nullable=true)
+     */
+    private $tipoInsumo;
+
+}

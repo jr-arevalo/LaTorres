@@ -1,0 +1,206 @@
+/* Grid System */
+.col {
+
+    float:left;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -moz-background-clip:padding-box !important;
+    -webkit-background-clip:padding-box !important;
+    background-clip:padding-box !important;
+}
+
+
+
+    /* 1. 12 Column Grid 0px - Infinity 
+    ----------------------------------------------------------------------------- 
+    
+    Span 1:    7.875%
+    Span 2:    16.25%
+    Span 3:    24.625%
+    Span 4:    33.0%
+    Span 5:    41.375%
+    Span 6:    49.75%
+    Span 7:    58.125%
+    Span 8:    66.5%
+    Span 9:    74.875%
+    Span 10:    83.25%
+    Span 11:    91.625%
+    Span 12:    100%
+    
+    ----------------------------------------------------------------------------- */
+
+    @media screen and (min-width: 0px) {
+        
+        .col {
+            margin-left: 0.5%;
+        	padding:0 0.5%;
+			
+        }
+        .row{margin: 0}
+        .contenedor .col{
+        margin:0;}
+        
+        /*
+        Add your semantic classnames in alongside their corresponding spans here. e.g.
+        
+        .c3,
+        .my_semantic_class_name {
+            ...
+        }
+        */
+        
+         .c1 {
+            width:7.625%;
+        }
+        .c2 {
+            width:16.0%;
+        }
+        .c3 {
+            width:24.375%;
+        }
+        .c4 {
+            width:32.75%;
+        }
+        .c5 {
+            width:41.125%;
+        }
+        .c6 {
+            width:49.5%;
+        }
+        .c7 {
+            width:57.875%;
+        }
+        .c8 {
+            width:66.25%;
+        }
+        .c9 {
+            width:74.625%;
+        }
+        .c10 {
+            width:83.0%;
+        }
+        .c11 {
+            width:91.375%;
+        }
+        .c12 {
+             width:100%;
+        }
+		/*push*/
+		.push-1,.push-2,.push-3,.push-4,.push-5,.push-6,
+		.push-7,.push-8,.push-9,.push-10,.push-11,.push-12{position: absolute;}
+		
+		.push-1 {
+            left:7.875%;
+        }
+        .push-2 {
+            left:16.25%;
+        }
+        .push-3 {
+		
+		  left: 24.625%;
+		}
+        .push-4 {
+            left:33.0%;
+        }
+        .push-5 {
+            left:41.375%;
+        }
+        .push-6 {
+            left:49.75%;
+        }
+        .push-7 {
+            left:58.125%;
+        }
+        .push-8 {
+            left:66.5%;
+        }
+        .push-9 {
+            left:74.875%;
+        }
+        .push-10 {
+            left:83.25%;
+        }
+        .push-11 {
+            left:91.625%;
+        }
+		/**/
+		.pull-1 {
+            margin-right:7.875%;
+        }
+        .pull-2 {
+            margin-right:16.25%;
+        }
+        .pull-3 {
+		
+		  margin-right: 24.625%;
+		}
+        .pull-4 {
+            margin-right:33.0%;
+        }
+        .pull-5 {
+            margin-right:41.375%;
+        }
+        .pull-6 {
+            margin-right:49.75%;
+        }
+        .pull-7 {
+            margin-right:58.125%;
+        }
+        .pull-8 {
+            margin-right:66.5%;
+        }
+        .pull-9 {
+            margin-right:74.875%;
+        }
+        .pull-10 {
+            margin-right:83.25%;
+        }
+        .pull-11 {
+            margin-right:91.625%;
+        }
+		/*ofsets*/
+		.offset-1 {
+            margin-left:7.875%;
+        }
+        .offset-2 {
+            margin-left:16.25%;
+        }
+        .offset-3 {
+		
+		  margin-left: 24.625%;
+		}
+       .offset-4 {
+            margin-left:33.0%;
+        }
+        .offset-5 {
+            margin-left:41.375%;
+        }
+        .offset-6 {
+            margin-left:49.75%;
+        }
+        .offset-7 {
+            margin-left:58.125%;
+        }
+        .offset-8 {
+            margin-left:66.5%;
+        }
+       .offset-9 {
+            margin-left:74.875%;
+        }
+        .offset-10 {
+            margin-left:83.25%;
+        }
+        .offset-11 {
+            margin-left:91.625%;
+        }
+		.offset-3 {
+		  margin-left: 25.625%;
+		}
+    }
+
+/*estilos de formulario*/
+	
+
+
+					

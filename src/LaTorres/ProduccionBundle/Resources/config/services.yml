@@ -1,0 +1,7 @@
+parameters:
+#    produccion.example.class: LaTorres\ProduccionBundle\Example
+
+services:
+#    produccion.example:
+#        class: %produccion.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
